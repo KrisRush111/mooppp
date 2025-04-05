@@ -7,17 +7,19 @@
 </head>
 <body>
   <h1>Привет из мини-приложения!</h1>
+  <p id="user">Загрузка...</p>
+
   <script>
     const tg = window.Telegram.WebApp;
     tg.expand();
 
-    // Проверим наличие пользователя
-    if (tg.initDataUnsafe?.user) {
-      const user = tg.initDataUnsafe.user;
-      document.body.innerHTML += `<p>Пользователь: ${user.first_name}</p>`;
+    if (tg.initDataUnsafe.user) {
+      document.getElementById("user").innerText =
+        `Пользователь: ${tg.initDataUnsafe.user.first_name}`;
     } else {
-      document.body.innerHTML += `<p>Пользователь не определён.</p>`;
+      document.getElementById("user").innerText = "Пользователь не определён.";
     }
   </script>
 </body>
 </html>
+
